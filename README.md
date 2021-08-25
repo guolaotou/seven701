@@ -16,9 +16,3 @@ cd seven701
 sudo python3 -m pip install -r requirements.txt
 python3 changecsv2xlsx.py
 ```
-
-
-mine todo
-导出的原始文件，直接放过来执行，看看能否执行成功？
-如果成功，那就再把csv文件处理，放到git上；
-如果不行，再改代码
