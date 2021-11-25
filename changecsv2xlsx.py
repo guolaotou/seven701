@@ -3,9 +3,9 @@ import pandas as pd
 from pandas import DataFrame
 import locale
 
-ORIGINAL_FILE = "./电子对账单9月~10月原始.csv"  # 原始文件
-# ORIGINAL_FILE = "./电子对账单10月-原始.csv"  # 原始文件
-OUTPUT_FILE = "电子对账单9月~10月.xlsx"  # 生成文件
+# ORIGINAL_FILE = "./电子对账单9月-原始.csv"  # 原始文件
+ORIGINAL_FILE = "./电子对账单10月~11月原始.csv"  # 原始文件
+OUTPUT_FILE = "电子对账单10月~11月.xlsx"  # 生成文件
 
 
 def main():
@@ -25,7 +25,7 @@ def main():
                    -round(locale.atof(str(table.loc[i]["借方发生额"])), 2) if table.loc[i]["贷方发生额"] == '0.00' else
                    round(locale.atof(str(table.loc[i]["贷方发生额"])), 2),
                    table.loc[i]["余额"], table.loc[i]["对方户名"],
-                   table.loc[i]["对方账号"], ""])
+                   str(table.loc[i]["对方账号"]), ""])
 
     # 3. 存储文件
     df = pd.DataFrame()
