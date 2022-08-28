@@ -4,8 +4,8 @@ from pandas import DataFrame
 import locale
 
 # ORIGINAL_FILE = "./电子对账单9月-原始.csv"  # 原始文件
-ORIGINAL_FILE = "./电子对账单10月~11月原始.csv"  # 原始文件
-OUTPUT_FILE = "电子对账单10月~11月.xlsx"  # 生成文件
+ORIGINAL_FILE = "./七零一_电子对账单7月~8月_原始.csv"  # 原始文件
+OUTPUT_FILE = "七零一_电子对账单7月~8月.xlsx"  # 生成文件
 
 
 def main():
@@ -20,9 +20,16 @@ def main():
     lt = list()
     locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
     for i in range(table.shape[0]):
+        # print(table.loc[i]["贷方发生额"])
+        # print(table.loc[i]["借方发生额"])
+        # print(table.loc[i]["贷方发生额"] == '0.00' or table.loc[i]["贷方发生额"] == 0 or table.loc[i]["贷方发生额"] == '0')
+        # print(-round(locale.atof(str(table.loc[i]["借方发生额"])), 2))
+        # print(-round(locale.atof(str(table.loc[i]["借方发生额"])), 2) if table.loc[i]["贷方发生额"] == '0.00' or table.loc[i]["贷方发生额"] == '0.0' or table.loc[i]["贷方发生额"] == '0' or table.loc[i]["贷方发生额"] == 0 else
+        #            round(locale.atof(str(table.loc[i]["贷方发生额"])), 2))
+        # print("--")
         lt.append([table.loc[i]["日期"], table.loc[i]["交易类型"],
                    0, table.loc[i]["摘要"],
-                   -round(locale.atof(str(table.loc[i]["借方发生额"])), 2) if table.loc[i]["贷方发生额"] == '0.00' else
+                   -round(locale.atof(str(table.loc[i]["借方发生额"])), 2) if table.loc[i]["贷方发生额"] == '0.00' or table.loc[i]["贷方发生额"] == '0.0' or table.loc[i]["贷方发生额"] == '0' or table.loc[i]["贷方发生额"] == 0 else
                    round(locale.atof(str(table.loc[i]["贷方发生额"])), 2),
                    table.loc[i]["余额"], table.loc[i]["对方户名"],
                    str(table.loc[i]["对方账号"]), ""])
